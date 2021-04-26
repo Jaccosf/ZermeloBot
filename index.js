@@ -82,7 +82,7 @@ client.on("ready", () => {
 				}
 			});
 
-			if (newCancelledLessons.size >= 1) {
+			if (newCancelledLessons.length >= 1) {
 				newCancelledLessons.forEach(app => {
 					try {
 						client.users.cache.get(uid).send(`:no_entry_sign: | De les **${app.subjects.join(", ")}** (${app.teachers.join(", ")}) op **${client.constants.parseDate(app.start)}** om **${client.constants.parseTime(app.start)}** valt uit!`);
