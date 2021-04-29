@@ -119,11 +119,20 @@ module.exports.executeSlash = async (client, interaction, args, user) => {
 			.addField("Tijd:", client.constants.parseTime(appointment.start), true)
 			.addField("Lokaal:", appointment.locations.join(", "), true);
 
+		let message = [];
+
+		message.push(client.constants.getEmoji("GREEN_TICK") + ` | De eerst volgende les is geladen, deze les is over **${client.constants.parseTimeDifference(appointment.start).days()} dagen, ${client.constants.parseTimeDifference(appointment.start).hours()} uren en ${client.constants.parseTimeDifference(appointment.start).minutes()} minuten**.`);
+
+
+		if (appointment.changeDescription) {
+			message.push(":warning: | **Opmerkingen:** " + appointment.changeDescription);
+		}
+
 		client.api.interactions(interaction.id, interaction.token).callback.post({
 			data: {
 				type: 4,
 				data: {
-					content: client.constants.getEmoji("GREEN_TICK") + ` | De eerst volgende les is geladen, deze les is over **${client.constants.parseTimeDifference(appointment.start).days()} dagen, ${client.constants.parseTimeDifference(appointment.start).hours()} uren en ${client.constants.parseTimeDifference(appointment.start).minutes()} minuten**.`,
+					content: message.join("\n"),
 					"embeds": [embed]
 				}
 			}
