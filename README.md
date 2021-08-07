@@ -6,8 +6,6 @@ Een simpele discord bot waardoor je jouw Zermelo rooster op discord kan bekijken
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
-
 ## Links
 [Discord](https://discord.gg/BVPuMqp)
 
