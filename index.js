@@ -74,14 +74,14 @@ client.on("ready", () => {
 			const school = client.database.get(`${uid}`, "school");
 
 			const ZermeloAPI = Zermelo.getAPI(school, accessToken);
-			const appointments = await ZermeloAPI.appointments.getParticipations(moment(new Date()).tz("Europe/Amsterdam").format('yyyy'), moment(new Date()).tz("Europe/Amsterdam").format('W'));
+			const appointments = await ZermeloAPI.appointments.getParticipations(moment(new Date()).tz("Europe/Amsterdam").format('yyyy'), moment(new Date()).tz("Europe/Amsterdam").format('W')).catch((err)=>console.log(err));
 
 			appointments.forEach(app => {
 				if (app.cancelled && !knownCancelledLessons.includes(app.id)) {
 					newCancelledLessons.push(app)
 					client.database.push("knownCancelledLessons", app.id);
 				}
-			}).catch((err)=>console.log(err));
+			});
 
 			if (newCancelledLessons.length >= 1) {
 				newCancelledLessons.forEach(app => {
