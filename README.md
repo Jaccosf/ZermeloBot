@@ -3,6 +3,9 @@
 
 Een simpele discord bot waardoor je jouw Zermelo rooster op discord kan bekijken en daar ook meldingen van krijgt.
 
+## Rework
+Dit is een rework van de originele Zermelo rooster bot van Jazzkuh die outdated is, door Jaccosf.
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
