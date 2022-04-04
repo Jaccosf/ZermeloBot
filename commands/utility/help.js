@@ -4,13 +4,12 @@ const { sep } = require("path");
 
 module.exports.commandInfo = {
 	name: "help",
-	description: "View all commands of the bot.",
+	description: "Bekijk alle commando's van de bot.",
 	usage: "[cmd]",
 	aliases: ['cmds']
 };
 
 module.exports.execute = async (client, msg, args) => {
-	const prefix = "r!";
 
 	if (args.length > 0 && args[0]) {
 		const commandInfo = [];
@@ -18,9 +17,9 @@ module.exports.execute = async (client, msg, args) => {
 		const command = client.commands.get(args[0].toLowerCase()) || client.commands.find(cmd => cmd.commandInfo.aliases && cmd.commandInfo.aliases.includes(args[0].toLowerCase()));
 		if (!command) return msg.channel.send('No matching commands or aliases found!');
 
-		commandInfo.push(`**${prefix}${command.commandInfo.name}**`);
+		commandInfo.push(`**${command.commandInfo.name}**`);
 		commandInfo.push(`${command.commandInfo.description ? command.commandInfo.description : "No description."}`);
-		commandInfo.push(`Basic usage: \`\`${prefix}${command.commandInfo.name}${command.commandInfo.usage ? " " + command.commandInfo.usage : ""}\`\``);
+		commandInfo.push(`Basic usage: \`\`${command.commandInfo.name}${command.commandInfo.usage ? " " + command.commandInfo.usage : ""}\`\``);
 		if (command.commandInfo.aliases) commandInfo.push(`Command aliases: \`\`${command.commandInfo.aliases.join(', ')}\`\``);
 
 		msg.channel.send(commandInfo)
@@ -40,7 +39,7 @@ module.exports.execute = async (client, msg, args) => {
 
 			for (const file of commands) {
 				const command = require(`../../commands/${category}/${file}`);
-				cmdList.push(`\`\`${prefix}${command.commandInfo.name}${command.commandInfo.usage ? " " + command.commandInfo.usage : ""}\`\`${command.commandInfo.description ? " - " + command.commandInfo.description : " - No description."}`);
+				cmdList.push(`\`\`${command.commandInfo.name}${command.commandInfo.usage ? " " + command.commandInfo.usage : ""}\`\`${command.commandInfo.description ? " - " + command.commandInfo.description : " - No description."}`);
 			}
 
 			embed.addField(`${capitalise.replace("Globaladmin", "Global Admin")} Commands (${cmdList.length})`, cmdList)

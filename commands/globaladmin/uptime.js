@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 module.exports.commandInfo = {
 	name: 'uptime',
-	description: "View the uptime of the bot.",
+	description: "Bekijk hoe lang de bot al draaiende is.",
 	globalAdmin: true
 };
 
@@ -13,5 +13,5 @@ module.exports.execute = async (client, msg, args) => {
 	let minutes = Math.floor(totalSeconds / 60);
 	let seconds = totalSeconds % 60;
 
-	await msg.channel.send(`${client.user.username} was started ${days} days, ${hours} hours, ${minutes} minutes, ${parseInt(seconds)} seconds ago.`)
+	await msg.channel.send(`${client.user.username} is ${days} dagen, ${hours} uren, ${minutes} minuten, ${parseInt(seconds)} seconden geleden gestart.`)
 };

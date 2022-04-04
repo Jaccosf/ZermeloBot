@@ -1,23 +1,24 @@
 const http = require('http');
 const express = require("express");
 const app = express();
+const config = require('./config.json');
 
 app.get("/", (req, res) => {
 	res.sendStatus(200);
 });
 
-app.listen(process.env.PORT);
+app.listen(config.port);
 
 const fs = require('fs');
 const UtilityClient = require("./lib/client");
 const { Zermelo } = require("zermelo.ts");
 const moment = require('moment-timezone');
 
-const client = new UtilityClient(process.env.BOT_TOKEN);
+const client = new UtilityClient(config.token);
 const notifyTimeout = new Set();
 
 client.on("ready", () => {
-	client.user.setPresence({ activity: { name: 'the system' }, status: 'online' })
+	client.user.setActivity('het rooster', {type: 'WATCHING'});
 	client.logger.info(`Bot is ready. (${client.guilds.cache.size} Guilds - ${client.channels.cache.size} Channels - ${client.users.cache.size} Users)`);
 
 	if (!client.database.has("knownCancelledLessons")) {
@@ -100,16 +101,5 @@ process.on('unhandledException', () => {
 		await client.database.close()
 	}).then(() => process.exit(1))
 })
-
-client.ws.on('INTERACTION_CREATE', async interaction => {
-  const command = interaction.data.name.toLowerCase();
-	const args = interaction.data.options;
-	const user = interaction.member;
-
-  const finalCmd = client.slashcommands.get(command);
-  if (!(command == finalCmd.commandInfo.name)) return;
-  
-  finalCmd.executeSlash(client, interaction, args, user);
-});
 
 client.start();
