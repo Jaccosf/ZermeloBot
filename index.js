@@ -81,7 +81,7 @@ client.on("ready", () => {
 					newCancelledLessons.push(app)
 					client.database.push("knownCancelledLessons", app.id);
 				}
-			});
+			}).catch((err)=>console.log(err));
 
 			if (newCancelledLessons.length >= 1) {
 				newCancelledLessons.forEach(app => {
