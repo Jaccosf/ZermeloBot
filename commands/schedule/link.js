@@ -13,7 +13,7 @@ module.exports.execute = async (client, msg, args) => {
 	}
 	
 	const school = args[0];
-	const code = args[1];
+	const code = args.split(' ').slice(1).join(' ')
 
 	if (school && code) {
 		try {
