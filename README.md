@@ -7,7 +7,8 @@ Een simpele discord bot waardoor je jouw Zermelo rooster op discord kan bekijken
 Dit is een rework van de originele Zermelo rooster bot van Jazzkuh die outdated is, door Jaccosf.
 
 ## Contributing
-Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+Maak een PR als je nog dingen wil aanvullen of een issue als iets niet werkt.
+NB: update naar discord.js v13 is work in progress
 
 ## Links
 [Discord](https://discord.gg/BVPuMqp)
